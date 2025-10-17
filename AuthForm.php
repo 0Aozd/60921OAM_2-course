@@ -3,7 +3,7 @@ $cookie_lifetime = 12;
 $uploadDir = "UserData/";
 
 
-// === Обработка POST ===
+// Обработка POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Сохраняем все поля в cookie
@@ -24,24 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Redirect после POST (PRG)
+    // Redirect после POST
     header("Location: ".$_SERVER['PHP_SELF']);
     exit;
 }
 
-// === Получаем данные из cookie и продлеваем срок их жизни ===
+//Получаем данные из cookie
 $formData = [];
-$fields = ['username','email','password','birthdate','gender','interests','currencies','about'];
-foreach($fields as $f){
-    if(isset($_COOKIE[$f])){
-        if(in_array($f, ['interests','currencies'])) $formData[$f] = explode(",", $_COOKIE[$f]);
-        else $formData[$f] = $_COOKIE[$f];
+$data = ['username','email','password','birthdate','gender','interests','currencies','about'];
+foreach($data as $d){
+    if(isset($_COOKIE[$d])){
+        if(in_array($d, ['interests','currencies'])) $formData[$d] = explode(",", $_COOKIE[$d]);
+        else $formData[$d] = $_COOKIE[$d];
 
-        // Продлеваем cookie
-        if (is_array($formData[$f])) {
-            setcookie($f, implode(",", $formData[$f]), time() + $cookie_lifetime);
+        if (is_array($formData[$d])) {
+            setcookie($d, implode(",", $formData[$d]), time() + $cookie_lifetime);
         } else {
-            setcookie($f, $formData[$f], time() + $cookie_lifetime);
+            setcookie($d, $formData[$d], time() + $cookie_lifetime);
         }
     }
 }
@@ -90,7 +89,7 @@ function getArr($name, $formData){
     <label>Пол:</label><br>
     <?php
     $genders = ["Мужской","Женский"];
-    $userGender = getVal('gender', $formData); // получаем выбранный пол, может быть пусто
+    $userGender = getVal('gender', $formData);
 
     foreach($genders as $g){
         $checked = ($userGender !== "" && $g === $userGender) ? "checked" : "";
