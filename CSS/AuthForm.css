@@ -1,0 +1,35 @@
+body {
+    margin: 20px;
+    background: #f6f6f6;
+}
+
+h2 {
+    text-align:center;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 0 0 10px #cccccc;
+}
+input, select, textarea {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+input[type=radio], input[type=checkbox] {
+    width: auto;
+}
+button { background: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}

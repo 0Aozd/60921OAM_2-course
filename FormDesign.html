@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация пользователя</title>
+    <link rel="stylesheet" href="CSS/AuthForm.css">
+</head>
+<body>
+
+<h2>Регистрация пользователя</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <label>Имя пользователя:</label><br>
+    <input type="text" name="username" required><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br>
+
+    <label>Пароль:</label><br>
+    <input type="password" name="password" required><br>
+    <br>
+
+    <label>Дата рождения:</label><br>
+    <input type="date" name="birthdate"><br>
+
+    <label>Загрузите фото профиля:</label><br>
+    <input type="file" name="photo">
+    <br>
+
+    <label>Пол:</label><br>
+    <input type="radio" name="gender" value="Мужской"> Мужской<br>
+    <input type="radio" name="gender" value="Женский"> Женский
+    <br><br>
+
+    <label>Интересы:</label><br>
+    <input type="checkbox" name="interests[]" value="Финансы"> Финансы<br>
+    <input type="checkbox" name="interests[]" value="Инвестиции"> Инвестиции<br>
+    <input type="checkbox" name="interests[]" value="Путешествия"> Путешествия
+    <br><br>
+
+    <label>Выберите валюты, с которыми работаете:</label><br>
+    <select name="currencies[]" multiple>
+        <option value="RUB">Рубли</option>
+        <option value="USD">Доллары</option>
+        <option value="EUR">Евро</option>
+        <option value="JPY">Иена</option>
+        <option value="CNY">Юани</option>
+    </select>
+    <br><br>
+
+    <label>О себе:</label><br>
+    <textarea name="about" rows="5"></textarea>
+    <br><br>
+
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+</body>
+</html>
