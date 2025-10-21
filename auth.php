@@ -1,12 +1,15 @@
 <?php
+global $conn;
 session_start(["use_strict_mode" => true]);
+require('DB/dbconnect.php');
 unset($_SESSION['message']);
 if (isset($_POST['login'])){
-    $_SESSION['login_value'] = $_POST['login'];
-    if ($_POST['login'] == 'Max'){
-        if ($_POST['password'] == '412412'){
-            $_SESSION['username'] = $_POST['login'];
-            unset($_SESSION['login_value']);
+    $result = $conn->query("SELECT * FROM users WHERE email = '".$_POST['login']."'");
+
+    if ($row = $result->fetch())
+    {
+        if (MD5($_POST["password"]) == $row['password']){ #213123
+            $_SESSION['username'] = $row['name'];
             header("Location: Main.php");
             die();
         }

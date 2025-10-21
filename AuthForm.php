@@ -2,10 +2,9 @@
 $cookie_lifetime = 12; // время жизни cookie (в секундах)
 $uploadDir = "UserData/";
 
-// --- Обработка отправки формы ---
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Сохраняем все поля в cookie
+    //Сохраняем все поля в cookie
     foreach ($_POST as $key => $value) {
         if (is_array($value)) {
             setcookie($key, implode(", ", $value), time() + $cookie_lifetime);
@@ -14,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Обработка загруженного файла
+    //Обработка загруженного файла
     if (!empty($_FILES["photo"]["name"])) {
         $fileName = basename($_FILES["photo"]["name"]);
         $targetFile = $uploadDir . $fileName;
@@ -23,12 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Перезагрузка страницы (чтобы избежать повторной отправки формы)
+
     header("Location: " . $_SERVER["PHP_SELF"]);
     exit;
 }
 
-// --- Продление срока cookie при каждом обновлении ---
+
 foreach ($_COOKIE as $key => $value) {
     setcookie($key, $value, time() + $cookie_lifetime);
 }
